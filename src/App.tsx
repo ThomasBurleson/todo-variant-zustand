@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Grid, Typography } from "@mui/material";
+import { TodoList } from "./todo/v2";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Grid container flexDirection="row" width="100%" height="100vh" gap={2}>
+        <Grid
+          item
+          container
+          flex={1}
+          flexDirection="column"
+          alignContent="flex-end"
+          padding={2}
+        >
+          <Typography variant="h3">Variant Todo List</Typography>
+        </Grid>
+        <Grid item flex={2} maxHeight="100vh" sx={{ overflowY: "scroll" }}>
+          <TodoList />
+        </Grid>
+        <Grid item flex={1} padding={2} />
+      </Grid>
+    </LocalizationProvider>
+  );
 }
 
-export default App
+export default App;
